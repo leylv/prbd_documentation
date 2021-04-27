@@ -1,6 +1,6 @@
 @startuml
 
-class User {
+abstract class User {
 string surname
 string name
 DateTime birthday
