@@ -24,8 +24,6 @@ class Quizz {
 string title
 List<Question> questions
 List<Test> tests
-DateTime start
-DateTime end
 bool visible()
 bool editable()
 }
@@ -33,6 +31,8 @@ bool editable()
 class Test {
 Student student
 Quizz quizz
+DateTime start
+DateTime end
 Dictionary<Question, List<Answer>> studentAnswers
 int score()
 bool visible()
