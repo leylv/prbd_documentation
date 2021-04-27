@@ -1,0 +1,61 @@
+___ PROFESSOR :
+
+signup()
+login()
+logout()
+editProfile()
+
+addStudent() : inscrit un étudiant à un cours donné
+removeStudent() : désactive l'inscription de l'étudiant à un cours donné
+
+getStudentsResults() : permet de visualiser, pour tous les étudiants d'un cours donné, tous les résultats aux tests
+
+createCourse() : création d'un cours dont le prof créateur devient responsable par défaut
+createQuestion() : création d'une question à mettre dans la banque de questions du cours dont le prof est responsable
+createQuizz() : création d'un questionnaire à partir de la banque de questions du cours dont le prof est responsable 
+createTest() : un test est un Quizz, à une date donnée, accessible aux étudiants du cours de ce Quizz 
+createCategory() : création d'une catégorie de questions
+
+getQuizz()
+getCourse()
+getTest()
+getQuestion()
+getStudent()
+getCategory()
+
+getQuizzes()
+getCourses()
+getTests() : permet de visualiser, pour un quizz donné, toutes les réponses des tests 
+getQuestions() : //doit pouvoir prendre en paramètre une catégorie pour filtrer
+getStudents()
+getCategories()
+
+editQuizz() : // ! plus possible de modifier/supprimer une fois que la date de début de validité est passée
+editCourse()
+editTest()
+editQuestion() : // ! plus possible de modifier/supprimer une fois que la date de début de validité est passée
+editCategory()
+
+deleteQuizz()  : ??? est-ce la même chose que pour editQuizz()/editQuestion()/deleteQuestion() : plus possible de modifier/supprimer une fois que la date de début de validité est passée
+deleteCourse()
+deleteTest()
+deleteQuestion() : // ! plus possible de modifier/supprimer une fois que la date de début de validité est passée
+deleteCategory()
+
+___ STUDENT :
+
+signup()
+login()
+logout()
+editProfile()
+
+answerQuestion() : répondre à la question d'un test // ! n'est plus possible après la fin de la période de validité d'un test
+
+getQuizzResults()
+getTest()
+getOngoingTests() : // ! ne sont visibles que le(s) test(s) en cours de validité
+getPassedTests()
+getCourse()
+getCourses()
+scoreSheet() : notes obtenus pour le(s) test(s)
+
