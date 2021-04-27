@@ -1,0 +1,87 @@
+@startuml
+
+class User {
+string surname
+string name
+DateTime birthday
+string email
+string password
+age()
+}
+
+class Student {
+List<Course> myCourse
+List<Test> tests
+'= liste des scores obtenus pour les tests
+scoreSheet()
+}
+
+class Professor {
+course Course
+}
+
+class Quizz {
+string title
+List<Question> questions
+List<Test> tests
+DateTime start
+DateTime end
+bool visible()
+bool editable()
+}
+
+class Test {
+Student student
+Quizz quizz
+Dictionary<Question, List<Answer>> studentAnswers
+int score()
+bool visible()
+bool editable()
+}
+
+class Subscription {
+bool active
+bool validated
+Course course
+Student student
+}
+
+class Question {
+'=énoncé :
+string qText
+List<Answer> possibleAnswers
+'=valeur de la question ("score max") :
+int value
+Dictionary<String, List<Question>> categories
+bool type
+}
+
+class Course {
+string name
+string description
+Professor responsible
+int maxStudents
+List<Subscription> subscriptionRequests
+List<Quizz> quizzes
+List<Question> questions
+}
+
+class Answer {
+string aText
+bool correct
+}
+
+User <|-- Student
+User <|-- Professor
+Student " 1 " <--> " * " Subscription
+Course " 1 " <--> " * " Subscription
+Professor " 1 " <--> " * " Course
+Course " 1 " <--> " * " Quizz
+Course " 1 " <--> " * " Question
+Quizz " * " <--> " * " Question
+Question " 1 " <--> " * " Answer
+Quizz " 1 " <--> " 1 " Test
+Student " 1 " <--> " * " Test
+Test " 1 " <--> " * " Answer
+
+@enduml
