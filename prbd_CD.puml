@@ -1,74 +1,94 @@
 @startuml
 
-abstract class User {
-string surname
-string name
-DateTime birthday
-string email
-string password
-age()
+class Answer {
+int answerId
+string aText
+bool isCorrect
 }
 
-class Student {
-List<Course> myCourse
-List<Test> tests
-'= liste des scores obtenus pour les tests
-scoreSheet()
+class Category {
+int categoryId
+string Name
+ICollection<Question> questions
+}
+
+class Course {
+int courseId
+string name
+string description
+Professor responsible
+int maxStudents
+ICollection<Category> categories
+ICollection<Subscription> subscriptionRequests
+ICollection<Quizz> quizzes
+ICollection<Question> questions
 }
 
 class Professor {
-course Course
+Course course
+}
+
+'=banque de questions d'un cours :
+class Question {
+int questionId
+'=énoncé :
+string qText
+'=type de question : une seule ou plusieurs réponses
+bool type
+ICollection<Answer> possibleAnswers
+ICollection<Category> categories
 }
 
 class Quizz {
+int quizzId
 string title
-List<Question> questions
-List<Test> tests
+DateTime start
+DateTime end
+ICollection<Question> questions
+ICollection<Test> tests
 bool visible()
 bool editable()
 }
 
+class QuizzQuestion {
+int questionId
+int quizzId
+Quizz quizz
+Question question
+'=valeur de la question :
+int questionValue
+}
+
+class Student {
+ICollection<Course> courses
+ICollection<Test> tests
+'= liste des scores obtenus pour les tests
+scoreSheet()
+}
+
+class Subscription {
+Course course
+Student student
+bool active
+bool validated
+}
+
 class Test {
+int testId
 Student student
 Quizz quizz
-DateTime start
-DateTime end
 Dictionary<Question, List<Answer>> studentAnswers
 int score()
 bool visible()
 bool editable()
 }
 
-class Subscription {
-bool active
-bool validated
-Course course
-Student student
-}
-
-class Question {
-'=énoncé :
-string qText
-List<Answer> possibleAnswers
-'=valeur de la question ("score max") :
-int value
-Dictionary<String, List<Question>> categories
-bool type
-}
-
-class Course {
+abstract class User {
+int UserId
+string surname
 string name
-string description
-Professor responsible
-int maxStudents
-List<Subscription> subscriptionRequests
-List<Quizz> quizzes
-List<Question> questions
-}
-
-class Answer {
-string aText
-bool correct
+string email
+string password
 }
 
 User <|-- Student
@@ -80,6 +100,7 @@ Course " 1 " <--> " * " Quizz
 Course " 1 " <--> " * " Question
 Quizz " * " <--> " * " Question
 Question " 1 " <--> " * " Answer
+Question " 1 " <--> " 1...* " Category
 Quizz " 1 " <--> " 1 " Test
 Student " 1 " <--> " * " Test
 Test " 1 " <--> " * " Answer
